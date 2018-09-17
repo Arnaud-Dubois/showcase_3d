@@ -43,17 +43,27 @@
 				color: cornflowerblue;
 			}
 
+			#btn__clear {
+				background-color: cornflowerblue;
+				color: white;
+			}
+			#btn__clear:hover {
+				background-color: white;
+				color: cornflowerblue;
+			}
+
 		</style>
 	</head>
 	<body>
 		<div class="box">
 			<h1>Change Model</h1>
 			<p>
-				3D Visualizer for different custom meshs. For now it's just basic primitives but planed to change for the future. Just click on the button to select what Model you want.
+				3D Visualizer for different custom meshs. There are basic primitives and a custom mesh Added.
 			</p>
 			<button id="btn__ico" class="btn--fullwidth">Icosahedron</button>
 			<button id="btn__cube" class="btn--fullwidth">Cube</button>
 			<button id="btn__sphere" class="btn--fullwidth">Sphere</button>
+			<button id="btn__chair" class="btn--fullwidth">Chair</button>
 
 			<button id="btn__clear" class="btn--fullwidth">Clear</button>
 		</div>
@@ -62,6 +72,7 @@
 
 
 		<script src="three.js"></script>
+		<script src="js/loaders/GLTFLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="main.js"></script>
 

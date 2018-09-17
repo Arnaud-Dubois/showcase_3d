@@ -49,6 +49,59 @@ let sphere = new THREE.Mesh( sphereGeometry, normalWireMaterial );
 sphere.position.x = -1;
 sphere.rotation.x = 90;
 
+
+// 4.
+// Create Custom Model imported from BLENDER
+let chairLoader = new THREE.GLTFLoader();
+
+// Load a glTF resource
+chairLoader.load(
+    // resource URL
+    'res/chair.gltf',
+    // called when the resource is loaded
+    function ( gltf ) {
+
+        blub = gltf.scene.children[0];
+        console.log(blub)
+        // add Normal Wire Shader
+        blub.material = normalWireMaterial;
+        blub.position.x = -1;
+        blub.position.y = -1;
+
+        
+        
+        function animate() {
+            requestAnimationFrame( animate ) 
+                blub.rotation.y += 0.01;
+        }
+
+        animate();
+
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Scene
+        gltf.scenes; // Array<THREE.Scene>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+
+        
+        
+    },
+    // called while loading is progressing
+    function ( xhr ) {
+
+        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+    },
+    // called when loading has errors
+    function ( error ) {
+
+        console.log( 'An error happened' );
+
+    }
+);
+
+
+
 /*
 **********************************************************
                 RENDERING THE SCENE
@@ -68,6 +121,7 @@ function animate() {
     box.rotation.z += 0.01;
     sphere.rotation.z += 0.01;
 
+
     // cube.position.x += 0.001;
     // cube.position.y += 0.001;
     // cube.position.z += 0.002;
@@ -85,7 +139,9 @@ animate();
 let btnIco = document.getElementById('btn__ico');
 let btnCube = document.getElementById('btn__cube');
 let btnSphere = document.getElementById('btn__sphere');
+let btnChair = document.getElementById('btn__chair');
 
+// Choose Mesh to show
 btnIco.addEventListener('click', addIco);
 function addIco() {
     clear();
@@ -101,13 +157,25 @@ function addSphere() {
     clear();
     scene.add( sphere );
 }
+btnChair.addEventListener('click', addChair);
+function addChair() {
+    clear();
+    scene.add( blub );
+    
+
+
+}
 
 // Clear the scene
 let btnClear = document.getElementById('btn__clear');
 btnClear.addEventListener('click', clear);
 // Clear function
 function clear() {
+    //console.log(Mesh.uuid)    
     scene.remove( icosahedron );
     scene.remove( box );
     scene.remove( sphere );
+    scene.remove( blub );
+
+    
 }
