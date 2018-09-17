@@ -9,10 +9,14 @@ let camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHe
 camera.position.z = 5;
 
 // Add Lights ( -- Not needed with Normal Shader -- )
-// let light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
-// light.position.set( 0, 1, 0 );
-// light.castShadow = true;
-// scene.add( light );
+let light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
+light.position.set( 0, 1, 0 );
+light.castShadow = true;
+scene.add( light );
+
+
+var light2 = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( light2 );
 
 /*
 **********************************************************
@@ -20,7 +24,8 @@ camera.position.z = 5;
 **********************************************************
 */
 // Create Normal Wireframe Shader
-let normalWireMaterial = new THREE.MeshNormalMaterial({wireframe: true, side: THREE.DoubleSide} );
+let normalWireMaterial = new THREE.MeshLambertMaterial({wireframe: false, side: THREE.DoubleSide} );
+//let normalWireMaterial = new THREE.MeshNormalMaterial({wireframe: false, side: THREE.DoubleSide} );
 
 // 1.
 // Create Icosahedron
@@ -53,6 +58,7 @@ sphere.rotation.x = 90;
 // 4.
 // Create Custom Model imported from BLENDER
 let chairLoader = new THREE.GLTFLoader();
+let potLoader = new THREE.GLTFLoader();
 
 // Load a glTF resource
 chairLoader.load(
@@ -67,8 +73,6 @@ chairLoader.load(
         blub.material = normalWireMaterial;
         blub.position.x = -1;
         blub.position.y = -1;
-
-        
         
         function animate() {
             requestAnimationFrame( animate ) 
@@ -82,24 +86,52 @@ chairLoader.load(
         gltf.scenes; // Array<THREE.Scene>
         gltf.cameras; // Array<THREE.Camera>
         gltf.asset; // Object
-
-        
-        
     },
     // called while loading is progressing
     function ( xhr ) {
-
         console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
     },
     // called when loading has errors
     function ( error ) {
-
         console.log( 'An error happened' );
-
     }
 );
+// Load a glTF resource
+potLoader.load(
+    // resource URL
+    'res/pot.gltf',
+    // called when the resource is loaded
+    function ( gltf ) {
 
+        pot = gltf.scene.children[0];
+        console.log(pot)
+        // add Normal Wire Shader
+        pot.material = normalWireMaterial;
+        pot.position.x = -1;
+        pot.position.y = -1;
+        
+        function animate() {
+            requestAnimationFrame( animate ) 
+                pot.rotation.y += 0.01;
+        }
+
+        animate();
+
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Scene
+        gltf.scenes; // Array<THREE.Scene>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+    },
+    // called while loading is progressing
+    function ( xhr ) {
+        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+    },
+    // called when loading has errors
+    function ( error ) {
+        console.log( 'An error happened' );
+    }
+);
 
 
 /*
@@ -140,6 +172,7 @@ let btnIco = document.getElementById('btn__ico');
 let btnCube = document.getElementById('btn__cube');
 let btnSphere = document.getElementById('btn__sphere');
 let btnChair = document.getElementById('btn__chair');
+let btnPot = document.getElementById('btn__pot');
 
 // Choose Mesh to show
 btnIco.addEventListener('click', addIco);
@@ -161,9 +194,11 @@ btnChair.addEventListener('click', addChair);
 function addChair() {
     clear();
     scene.add( blub );
-    
-
-
+}
+btnPot.addEventListener('click', addPot);
+function addPot() {
+    clear();
+    scene.add( pot );
 }
 
 // Clear the scene
@@ -176,6 +211,5 @@ function clear() {
     scene.remove( box );
     scene.remove( sphere );
     scene.remove( blub );
-
-    
+    scene.remove( pot );
 }

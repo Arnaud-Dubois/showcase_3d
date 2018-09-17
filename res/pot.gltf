@@ -3,9 +3,9 @@
         {
             "bufferView" : 0,
             "componentType" : 5123,
-            "count" : 4260,
+            "count" : 576,
             "max" : [
-                2034
+                364
             ],
             "min" : [
                 0
@@ -15,32 +15,32 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 2035,
+            "count" : 365,
             "max" : [
-                0.8950803279876709,
-                3.265944004058838,
-                0.8817635774612427
+                1.2158411741256714,
+                1.6496025323867798,
+                1.2158411741256714
             ],
             "min" : [
-                -0.8950803279876709,
+                -1.2158411741256714,
                 0.0,
-                -0.8817635774612427
+                -1.2158411741256714
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 2035,
+            "count" : 365,
             "max" : [
+                0.9238795638084412,
                 1.0,
-                1.0,
-                1.0
+                0.9238795638084412
             ],
             "min" : [
+                -0.9238796830177307,
                 -1.0,
-                -1.0,
-                -1.0
+                -0.9238795638084412
             ],
             "type" : "VEC3"
         }
@@ -52,32 +52,32 @@
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 8520,
+            "byteLength" : 1152,
             "byteOffset" : 0,
             "target" : 34963
         },
         {
             "buffer" : 0,
-            "byteLength" : 24420,
-            "byteOffset" : 8520,
+            "byteLength" : 4380,
+            "byteOffset" : 1152,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 24420,
-            "byteOffset" : 32940,
+            "byteLength" : 4380,
+            "byteOffset" : 5532,
             "target" : 34962
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 57360,
-            "uri" : "chair.bin"
+            "byteLength" : 9912,
+            "uri" : "pot.bin"
         }
     ],
     "meshes" : [
         {
-            "name" : "Cube.006",
+            "name" : "Circle",
             "primitives" : [
                 {
                     "attributes" : {
@@ -92,7 +92,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "chair.000"
+            "name" : "Circle"
         }
     ],
     "scene" : 0,
