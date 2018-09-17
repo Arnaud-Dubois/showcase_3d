@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Showcase 3D</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+		<style>
+			.box {
+				background-color:#242424;
+				color:aliceblue;
+				width: 20%;
+				height: 100%;
+				top: 0;
+				right: 0;
+				display: inline-block;
+				position: fixed;
+				z-index: 9999;
+				padding: 25px;
+				}
+			p {color:grey;letter-spacing:1px;margin-bottom: 50px;}
+			body { font-family: 'Montserrat', sans-serif; margin: 0; }
+			canvas { width: 100%; height: 100% }
+
+			input { margin:5px 0;display:block; padding:10px;font-size:18px}
+			
+			.btn--fullwidth {
+				width:100%;
+				padding:15px 5px;
+				margin-bottom:5px;
+				font-size: 24px;
+				letter-spacing: 2px;
+				cursor: pointer;
+				color: white;
+				text-transform: uppercase;
+				background-color: crimson;
+				border:none;
+				border-radius: 3px;
+				transition: 250ms;
+			}
+
+			.btn--fullwidth:hover {
+				background-color: white;
+				color: cornflowerblue;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1>Change Model</h1>
+			<p>
+				3D Visualizer for different custom meshs. For now it's just basic primitives but planed to change for the future. Just click on the button to select what Model you want.
+			</p>
+			<button id="btn__ico" class="btn--fullwidth">Icosahedron</button>
+			<button id="btn__cube" class="btn--fullwidth">Cube</button>
+			<button id="btn__sphere" class="btn--fullwidth">Sphere</button>
+
+			<button id="btn__clear" class="btn--fullwidth">Clear</button>
+		</div>
+
+		
+
+
+		<script src="three.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+		<script src="main.js"></script>
+
+	</body>
+</html>
