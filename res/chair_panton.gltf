@@ -1,0 +1,122 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 8448,
+            "max" : [
+                1409
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 1410,
+            "max" : [
+                0.9511656165122986,
+                2.913837432861328,
+                0.8574548363685608
+            ],
+            "min" : [
+                -0.9511655569076538,
+                0.012472322210669518,
+                -0.9594813585281372
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 1410,
+            "max" : [
+                0.9932859539985657,
+                0.999969482421875,
+                0.999969482421875
+            ],
+            "min" : [
+                -0.9932859539985657,
+                -0.999969482421875,
+                -0.999969482421875
+            ],
+            "type" : "VEC3"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 16896,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 16920,
+            "byteOffset" : 16896,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 16920,
+            "byteOffset" : 33816,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 50736,
+            "uri" : "chair_panton.bin"
+        }
+    ],
+    "materials" : [
+        {
+            "name" : "chair_panton",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.6400057411194702,
+                    0.04716436337179486,
+                    0.023672464842684038,
+                    1.0
+                ],
+                "metallicFactor" : 0.0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Plane",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1
+                    },
+                    "indices" : 0,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Chaise Panton"
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}

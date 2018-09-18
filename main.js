@@ -9,13 +9,18 @@ let camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHe
 camera.position.z = 5;
 
 // Add Lights ( -- Not needed with Normal Shader -- )
-let light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
+let light = new THREE.DirectionalLight( 0xffffff, 3, 10 );
 light.position.set( 0, 1, 0 );
 light.castShadow = true;
 scene.add( light );
 
+let backLight = new THREE.DirectionalLight( 0xffffff, 3, 10 );
+backLight.position.set( 1, 1, 1 );
+backLight.castShadow = true;
+scene.add( backLight );
 
-var light2 = new THREE.AmbientLight( 0x404040 ); // soft white light
+
+var light2 = new THREE.AmbientLight( 0x404040, 2 ); // soft white light
 scene.add( light2 );
 
 /*
@@ -24,8 +29,8 @@ scene.add( light2 );
 **********************************************************
 */
 // Create Normal Wireframe Shader
-let normalWireMaterial = new THREE.MeshLambertMaterial({wireframe: false, side: THREE.DoubleSide} );
-//let normalWireMaterial = new THREE.MeshNormalMaterial({wireframe: false, side: THREE.DoubleSide} );
+let normalWireMaterial = new THREE.MeshNormalMaterial({wireframe: false, side: THREE.DoubleSide} );
+let trueNormalWireMaterial = new THREE.MeshLambertMaterial({wireframe: false, side: THREE.DoubleSide} );
 
 // 1.
 // Create Icosahedron
@@ -63,14 +68,17 @@ let potLoader = new THREE.GLTFLoader();
 // Load a glTF resource
 chairLoader.load(
     // resource URL
-    'res/chair.gltf',
+    'res/chair_wood.gltf',
     // called when the resource is loaded
     function ( gltf ) {
 
         blub = gltf.scene.children[0];
-        console.log(blub)
         // add Normal Wire Shader
-        blub.material = normalWireMaterial;
+        colorValue = 0.0;
+        blub.material.emissive.r = colorValue;
+        blub.material.emissive.g = colorValue;
+        blub.material.emissive.b = colorValue;
+        blub.material.roughness = 0.9;
         blub.position.x = -1;
         blub.position.y = -1;
         
@@ -99,14 +107,16 @@ chairLoader.load(
 // Load a glTF resource
 potLoader.load(
     // resource URL
-    'res/pot.gltf',
+    'res/chair_panton.gltf',
     // called when the resource is loaded
     function ( gltf ) {
 
         pot = gltf.scene.children[0];
-        console.log(pot)
+        console.log(pot.material);
+        pot.material.emissive.r = 0.1;
+        pot.material.roughness = 0.5;
         // add Normal Wire Shader
-        pot.material = normalWireMaterial;
+        // pot.material = trueNormalWireMaterial;
         pot.position.x = -1;
         pot.position.y = -1;
         
@@ -122,6 +132,7 @@ potLoader.load(
         gltf.scenes; // Array<THREE.Scene>
         gltf.cameras; // Array<THREE.Camera>
         gltf.asset; // Object
+        
     },
     // called while loading is progressing
     function ( xhr ) {
@@ -140,10 +151,11 @@ potLoader.load(
 **********************************************************
 */
 // Render the scene in the HTML
-let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Change alpha for the canvas color
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 let canvas = document.getElementById('canvasBox');
+
 
 // Updating the rendering function
 function animate() {
