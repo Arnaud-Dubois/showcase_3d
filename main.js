@@ -64,6 +64,7 @@ sphere.rotation.x = 90;
 // Create Custom Model imported from BLENDER
 let chairLoader = new THREE.GLTFLoader();
 let potLoader = new THREE.GLTFLoader();
+let gardenChairLoader = new THREE.GLTFLoader();
 
 // Load a glTF resource
 chairLoader.load(
@@ -144,6 +145,46 @@ potLoader.load(
     }
 );
 
+// Load a glTF resource
+gardenChairLoader.load(
+    // resource URL
+    'res/chair_metal.gltf',
+    // called when the resource is loaded
+    function ( gltf ) {
+
+        gardenChair = gltf.scene.children[0];
+        console.log(gardenChair.material);
+        gardenChair.material.metalness = 0.4;
+        gardenChair.material.roughness = 0.6;
+        // add Normal Wire Shader
+        // gardenChair.material = trueNormalWireMaterial;
+        gardenChair.position.x = -1;
+        gardenChair.position.y = -1;
+        
+        function animate() {
+            requestAnimationFrame( animate ) 
+                gardenChair.rotation.y += 0.01;
+        }
+
+        animate();
+
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Scene
+        gltf.scenes; // Array<THREE.Scene>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+        
+    },
+    // called while loading is progressing
+    function ( xhr ) {
+        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+    },
+    // called when loading has errors
+    function ( error ) {
+        console.log( 'An error happened' );
+    }
+);
+
 
 /*
 **********************************************************
@@ -185,6 +226,7 @@ let btnCube = document.getElementById('btn__cube');
 let btnSphere = document.getElementById('btn__sphere');
 let btnChair = document.getElementById('btn__chair');
 let btnPot = document.getElementById('btn__pot');
+let btnGardenChair = document.getElementById('btn__gardenChair');
 
 // Choose Mesh to show
 btnIco.addEventListener('click', addIco);
@@ -212,6 +254,11 @@ function addPot() {
     clear();
     scene.add( pot );
 }
+btnGardenChair.addEventListener('click', addGardenChair);
+function addGardenChair() {
+    clear();
+    scene.add( gardenChair );
+}
 
 // Clear the scene
 let btnClear = document.getElementById('btn__clear');
@@ -224,4 +271,5 @@ function clear() {
     scene.remove( sphere );
     scene.remove( blub );
     scene.remove( pot );
+    scene.remove( gardenChair );
 }
